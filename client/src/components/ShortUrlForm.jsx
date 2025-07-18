@@ -12,6 +12,8 @@ const ShortenUrlForm = () => {
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
     const [userUrls, setUserUrls] = useState([])
+    const [favicons, setFavicons] = useState({})
+    const [shortUrl, setShortUrl] = useState('')
 
     useEffect(() => {
         fetchUrls()
@@ -37,9 +39,7 @@ const ShortenUrlForm = () => {
         setLoading(true)
         setShortUrl('')
         setError('')
-        setTimeout(() => {
-            setSuccess("")
-        }, 3000)
+        setTimeout(() => setSuccess(''), 3000)
 
         try {
             const payload = { full_url: formData.full_url }
@@ -49,7 +49,7 @@ const ShortenUrlForm = () => {
 
             const res = await createUrl(payload)
             setShortUrl(res.data?.data?.short_url || '')
-            setSuccess(' Short URL created successfully!')
+            setSuccess('Short URL created successfully!')
             setFormData({ full_url: '', slug: '' })
             setUseSlug(false)
             fetchUrls()
@@ -68,7 +68,7 @@ const ShortenUrlForm = () => {
             {error && <p className="text-red-400 text-center mb-4">{error}</p>}
             {success && <p className="text-green-400 text-center mb-4">{success}</p>}
 
-            <form onSubmit={handleSubmit} className="space-y-5 ">
+            <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                     <label className="block text-sm mb-2">Full URL</label>
                     <div className="relative">
@@ -141,24 +141,31 @@ const ShortenUrlForm = () => {
                                     key={url._id}
                                     className="bg-zinc-700 p-3 rounded-md text-sm flex flex-col sm:flex-row sm:justify-between"
                                 >
-                                    <div>
-                                        <p className="text-gray-300">{url.full_url}</p>
-                                        <a
-                                            href={`${backendBase}/${url.short_url}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-400 hover:underline"
-                                        >
-                                            {url.short_url}
-                                        </a>
+                                    <div className="flex items-center space-x-2">
+                                        <img
+                                            src={`https://www.google.com/s2/favicons?sz=64&domain=${new URL(url.full_url).hostname}`}
+                                            alt="favicon"
+                                            className="w-5 h-5 mr-2"
+                                        />
+                                        <div>
+                                            <p className="text-gray-300 break-all">{url.full_url}</p>
+                                            <a
+                                                href={`${backendBase}/${url.short_url}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-blue-400 hover:underline"
+                                            >
+                                                {url.short_url}
+                                            </a>
+                                        </div>
                                     </div>
                                 </li>
                             ))}
                         </ul>
+
                     )}
                 </div>
             </div>
-
         </div>
     )
 }
