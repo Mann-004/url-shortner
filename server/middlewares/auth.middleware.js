@@ -4,6 +4,7 @@ import { findUserById } from "../dao/user.dao.js"
 import { sanitizeUser } from "../utils/sanitizeUser.js"
 import { signToken } from "../utils/signToken.js"
 import { cookieOptionsForAccessToken } from "../config/cookieOptions.js"
+import chalk from "chalk"
 
 export const authMiddleware = async (req, res, next) => {
   let accessToken = req.cookies.accessToken
@@ -24,7 +25,6 @@ export const authMiddleware = async (req, res, next) => {
  
   }
 
-
   if (!refreshToken) return errorResponse(res, "Unauthorized - no refresh token", 401)
 
   try {
@@ -34,7 +34,10 @@ export const authMiddleware = async (req, res, next) => {
 
 
     const newAccessToken = await signToken({ id: user._id, email: user.email })
+    // console.log("newAccesTokenGen",newAccessToken)
     res.cookie("accessToken", newAccessToken, cookieOptionsForAccessToken)
+
+   
 
     req.user = sanitizeUser(user)
     return next()

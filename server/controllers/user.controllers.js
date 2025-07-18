@@ -3,7 +3,7 @@ import { sanitizeUser } from "../utils/sanitizeUser.js"
 import { cookieOptionsForAccessToken, cookieOptionsForRefreshToken } from "../config/cookieOptions.js"
 import { errorResponse, successResponse } from "../utils/response.js"
 import { validateUserInput } from "../utils/validateUserInput.js"
-import { updateUserRefreshToken } from "../dao/user.dao.js"
+import { updateUserRefreshToken,findUserById } from "../dao/user.dao.js"
 import { getUsersAllUrl } from "../dao/shortUrl.dao.js"
 import chalk from "chalk"
 
@@ -84,6 +84,13 @@ export const getAllUrls = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+}
+
+export const getCurrentUser = async (req, res, next) => {
+  const user = await findUserById(req.user._id)
+  // console.log("current user",user)
+  return successResponse(res, "checked current user", user, 200)
+
 }
 
 

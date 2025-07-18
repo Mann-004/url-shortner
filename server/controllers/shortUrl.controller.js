@@ -1,4 +1,4 @@
-import { getShortUrl } from "../dao/shortUrl.dao.js"
+import { deleteShortUrlById, getShortUrl } from "../dao/shortUrl.dao.js"
 import { createShortUrl } from "../services/shortUrl.services.js"
 import { errorResponse, successResponse } from "../utils/response.js"
 
@@ -29,6 +29,20 @@ export const handleRedirect = async (req, res, next) => {
 
     } catch (err) {
         next(err)
+    }
+}
+export const deleteShortUrlController = async (req, res, next) => {
+    try {
+        const { shortUrlId } = req.params
+        // const userId = req.user._id
+
+        const deleted = await deleteShortUrlById(shortUrlId)
+
+        if (!deleted)  return errorResponse(res,'Short URL not found or not authorized',404)
+
+        return successResponse(res, { message: 'URL deleted successfully'})
+    } catch (error) {
+        next(error)
     }
 }
 
