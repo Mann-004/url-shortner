@@ -28,8 +28,9 @@ app.use(cors({
 
 
 app.use("/api/user",userRoutes)
-app.use("/api/create",shortUrlRoutes)
+app.use("/api",shortUrlRoutes)
 app.get("/:short_url", handleRedirect)
+
 
 
 app.use(errorHandler)
