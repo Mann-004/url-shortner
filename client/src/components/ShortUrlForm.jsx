@@ -12,7 +12,6 @@ const ShortenUrlForm = () => {
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
     const [userUrls, setUserUrls] = useState([])
-    const [favicons, setFavicons] = useState({})
     const [shortUrl, setShortUrl] = useState('')
 
     useEffect(() => {
@@ -22,6 +21,7 @@ const ShortenUrlForm = () => {
     const fetchUrls = async () => {
         try {
             const res = await getAllUrls()
+            // console.log(res.data)
             setUserUrls(res?.data || [])
         } catch (err) {
             console.error('Failed to fetch URLs:', err)
@@ -48,8 +48,8 @@ const ShortenUrlForm = () => {
             }
 
             const res = await createUrl(payload)
-            setShortUrl(res.data?.data?.short_url || '')
-            setSuccess('Short URL created successfully!')
+            // setShortUrl(res.data?.data?.short_url || '')
+            setSuccess('Short URL created successfully')
             setFormData({ full_url: '', slug: '' })
             setUseSlug(false)
             fetchUrls()
@@ -65,8 +65,6 @@ const ShortenUrlForm = () => {
         <div className="bg-zinc-800 text-white p-6 rounded-xl shadow-lg max-w-xl mx-auto mt-10 border border-gray-700">
             <h2 className="text-2xl font-bold mb-6 text-center">URL Shortener</h2>
 
-            {error && <p className="text-red-400 text-center mb-4">{error}</p>}
-            {success && <p className="text-green-400 text-center mb-4">{success}</p>}
 
             <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
@@ -84,6 +82,8 @@ const ShortenUrlForm = () => {
                         />
                     </div>
                 </div>
+                {error && <p className="text-red-500 text-left text-sm mb-4">{error}</p>}
+                {success && <p className="text-green-500 text-left text-sm mb-4">{success}</p>}
 
                 <label className="flex items-center space-x-2 text-sm">
                     <input
@@ -99,13 +99,12 @@ const ShortenUrlForm = () => {
                     <div>
                         <label className="block text-sm mb-2">Slug (optional)</label>
                         <div className="relative">
-                            <Hash className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                             <input
                                 type="text"
                                 name="slug"
                                 value={formData.slug}
                                 onChange={handleChange}
-                                className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                                className="w-full pl-10 pr-4 py-3 rounded-lg bg-zinc-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                                 placeholder="my-custom-slug"
                             />
                         </div>
@@ -115,8 +114,7 @@ const ShortenUrlForm = () => {
                 <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full py-3 bg-blue-600 text-white font-semibold rounded-lg transition duration-200 ${loading ? 'opacity-60 cursor-not-allowed' : 'hover:scale-105'
-                        }`}
+                    className={`w-full py-3 bg-blue-600 text-white font-semibold rounded-lg transition duration-200 `}
                 >
                     {loading ? (
                         <span className="flex items-center justify-center">
@@ -143,7 +141,7 @@ const ShortenUrlForm = () => {
                                 >
                                     <div className="flex items-center space-x-2">
                                         <img
-                                            src={`https://www.google.com/s2/favicons?sz=64&domain=${new URL(url.full_url).hostname}`}
+                                            src={`https://www.google.com/s2/favicons?sz=64&domain=${new URL(url.full_url)}`}
                                             alt="favicon"
                                             className="w-5 h-5 mr-2"
                                         />
