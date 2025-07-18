@@ -72,7 +72,7 @@ export const logout_user = async (req, res, next) => {
 
 export const getAllUrls = async (req, res, next) => {
   try {
-    const userId = req.user?._id 
+    const userId = req.user?._id
 
     if (!userId) {
       return errorResponse(res, "User not authenticated", 401)
@@ -85,4 +85,5 @@ export const getAllUrls = async (req, res, next) => {
     next(error)
   }
 }
+
 
