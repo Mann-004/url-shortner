@@ -127,7 +127,7 @@ const Signup = ({ onSwitch }) => {
               type="button"
               onClick={handleSubmit}
               disabled={loading}
-              className={`w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
+              className={`w-full bg-[#1eb9a4] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
