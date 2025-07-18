@@ -1,5 +1,5 @@
 import urlSchema from "../models/shortUrl.model.js"
-import { ConflictError } from "../utils/handleError.js"
+import { ConflictError, NotFoundError } from "../utils/handleError.js"
 
 export const saveShortUrl = async (longUrl, shortUrl, userId) => {
     try {
@@ -53,5 +53,13 @@ export const getUsersAllUrl = async (id) => {
     return await urlSchema.find({ user: id })
 
 }
+
+
+
+export const deleteShortUrlById = async (shortUrlId) => {
+    const result = await urlSchema.findOneAndDelete({ _id: shortUrlId })
+    return result
+}
+
 
 
