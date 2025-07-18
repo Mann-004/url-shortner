@@ -160,7 +160,6 @@ const ShortenUrlForm = () => {
                                 </li>
                             ))}
                         </ul>
-
                     )}
                 </div>
             </div>
