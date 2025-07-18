@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { loginUser } from '../api/user.api.js'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../store/userSlice'
 import { useNavigate } from 'react-router-dom'
 
-const LoginForm = ({ onSwitch }) => {
+const LoginForm = ({ onSwitch, state }) => {
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState({})
@@ -14,6 +14,8 @@ const LoginForm = ({ onSwitch }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const auth = useSelector((state) => state.auth)
+  // console.log(auth)
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -36,28 +38,30 @@ const LoginForm = ({ onSwitch }) => {
     return newErrors
   }
 
-const handleLogin = async () => {
+  const handleLogin = async () => {
     const newErrors = validateForm()
     if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors)
-        return
+      setErrors(newErrors)
+      return
     }
 
     setLoading(true)
     setApiError('')
     try {
-        const response = await loginUser(formData.email, formData.password)
-        dispatch(setUser(response.data))
-        navigate("/shorten")
-        // console.log('User logged in:', response.data)
+      const response = await loginUser(formData.email, formData.password)
+      // console.log(response)
+      dispatch(login(response.data))
+      // console.log("Redux user after login:", response.data)
+      navigate("/shorten")
+      // console.log('User logged in:', response.data)
     } catch (error) {
-        console.error('Full error:', error)
-        const backendMessage = error?.response?.data?.message
-        setApiError(backendMessage || 'Something went wrong. Please try again.')
+      console.error('Full error:', error)
+      const backendMessage = error?.response?.data?.message
+      setApiError(backendMessage || 'Something went wrong. Please try again.')
     } finally {
-        setLoading(false)
+      setLoading(false)
     }
-}
+  }
 
 
 
