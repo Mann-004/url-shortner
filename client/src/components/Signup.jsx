@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react'
 import { registerUser } from '../api/user.api.js'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../store/userSlice.js'
+import { login } from '../store/userSlice.js'
 import { useNavigate } from 'react-router-dom'
 
 const Signup = ({ onSwitch }) => {
