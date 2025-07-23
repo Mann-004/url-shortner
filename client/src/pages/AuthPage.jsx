@@ -8,7 +8,6 @@ const AuthPage = () => {
   
   const [showSignup, setShowSignup] = useState(false)
   const toggleForm = () => setShowSignup(prev => !prev)
-
   const [login, setLogin] = useState(false)
   return (
     <>
