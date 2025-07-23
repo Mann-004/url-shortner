@@ -68,12 +68,12 @@ const Signup = ({ onSwitch }) => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-4">
+    <div className="min-h-screen dark:bg-zinc-900 flex items-center justify-center p-4 text-[#1f1f1f] dark:text-gray-100">
       <div className="w-full max-w-md">
-        <div className="bg-zinc-800 rounded-2xl shadow-2xl p-8 border border-gray-700">
+        <div className="dark:bg-zinc-800 bg-white rounded-2xl shadow-2xl p-8 ">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
-            <p className="text-gray-400">Join us and start your journey</p>
+            <h2 className="text-3xl font-bold mb-2">Create Account</h2>
+            <p className="dark:text-gray-400 text-zinc-700">Join us and start your journey</p>
           </div>
 
           {apiError && <p className="text-red-400 text-center mb-4">{apiError}</p>}
@@ -101,22 +101,22 @@ const Signup = ({ onSwitch }) => {
             />
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium dark:text-gray-300 mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 dark:text-gray-400 h-5 w-5" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 pr-12 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 pr-12 text-white placeholder-gray-400"
                   placeholder="Create a password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 dark:text-gray-400 hover:text-gray-300"
                 >
                   {showPassword ? <Eye className="h-5 w-5" /> : <EyeOff className="h-5 w-5" />}
                 </button>
@@ -127,18 +127,18 @@ const Signup = ({ onSwitch }) => {
               type="button"
               onClick={handleSubmit}
               disabled={loading}
-              className={`w-full bg-[#1eb9a4] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
+              className={`w-full  dark:bg-blue-600 bg-[#1eb9a4] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105  ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
           </div>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-400">
+            <p className="dark:text-gray-400 text-zinc-700  ">
               Already have an account?{' '}
               <button
                 onClick={onSwitch}
-                className="text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200 hover:underline"
+                className="dark:text-blue-400 text-[#1ebaa5] font-medium transition-colors duration-200 hover:underline"
               >
                 Sign in here
               </button>
@@ -152,16 +152,16 @@ const Signup = ({ onSwitch }) => {
 
 const InputField = ({ id, label, icon, value, onChange, placeholder, error, type = 'text' }) => (
   <div>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-300 mb-2">{label}</label>
+    <label htmlFor={id} className="block text-sm font-medium dark:text-gray-300 mb-2">{label}</label>
     <div className="relative">
-      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5">{icon}</span>
+      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 dark: dark:text-gray-400 h-5 w-5">{icon}</span>
       <input
         type={type}
         id={id}
         name={id}
         value={value}
         onChange={onChange}
-        className="w-full bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 text-white placeholder-gray-400 "
         placeholder={placeholder}
       />
     </div>
