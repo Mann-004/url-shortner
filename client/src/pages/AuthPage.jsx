@@ -11,7 +11,7 @@ const AuthPage = () => {
   const [login, setLogin] = useState(false)
   return (
     <>
-      {showSignup ? <Signup onSwitch={toggleForm} state={setLogin} /> : <Login onSwitch={toggleForm} state={setLogin} />}
+     {showSignup ? <Signup onSwitch={toggleForm} state={setLogin} /> : <Login onSwitch={toggleForm} state={setLogin} />}
     </>
   )
 }
