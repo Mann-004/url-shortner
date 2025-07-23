@@ -8,7 +8,6 @@ import useTitle from '../components/useTitle'
 
 
 const ShortenPage = () => {
-
   useTitle("Home | Url shorten")
 
   const [userUrls, setUserUrls] = useState([])

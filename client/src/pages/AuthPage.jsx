@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Signup from '../components/Signup'
 import Login from '../components/LoginForm'
+import useTitle from '../components/useTitle'
 
 const AuthPage = () => {
+  useTitle("url shorten")
+  
   const [showSignup, setShowSignup] = useState(false)
   const toggleForm = () => setShowSignup(prev => !prev)
 
