@@ -1,6 +1,5 @@
-// components/ShortenUrlForm.jsx
 import React, { useState } from 'react'
-import { Link2, Loader2, Hash } from 'lucide-react'
+import { Link2, Loader2 } from 'lucide-react'
 import { createUrl } from '../api/user.api'
 
 const ShortenUrlForm = ({ onSuccess }) => {
@@ -57,8 +56,8 @@ const ShortenUrlForm = ({ onSuccess }) => {
           />
         </div>
       </div>
-      {error && <p className="text-red-500 text-left text-sm mb-4">{error}</p>}
-      {success && <p className="text-green-500 text-left text-sm mb-4">{success}</p>}
+      {error && <p className="text-red-600 text-left text-sm mb-4">{error}</p>}
+      {success && <p className="text-green-600 text-left text-sm mb-4">{success}</p>}
 
       <label className="flex items-center space-x-2 text-sm text-[#1f1f1f] dark:text-gray-100">
         <input

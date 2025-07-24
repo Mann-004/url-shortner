@@ -13,6 +13,7 @@ import AuthPage from './pages/AuthPage'
 import ShortenPage from './pages/ShortenPage'
 import store from "./store/store"
 import ProtectedRoute from './components/ProtectedRoute'
+import NotFound from './components/NotFound'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 )

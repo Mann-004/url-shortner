@@ -30,7 +30,11 @@ export const getAllUrls = async () => {
 }
 
 export const deleteUrl = async (shorUrlId) => {
-  const {data}= await axiosInstance.delete(`/api/delete/${shorUrlId}`)
+  const { data } = await axiosInstance.delete(`/api/delete/${shorUrlId}`)
+  return data
+}
+export const profileOfUser = async () => {
+  const { data } = await axiosInstance.get("api/user/me")
   return data
 }
 

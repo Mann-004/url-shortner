@@ -58,7 +58,7 @@ const Signup = ({ onSwitch }) => {
     try {
       setLoading(true)
       const res = await registerUser(trimmed.name, trimmed.email, trimmed.password)
-      dispatch(setUser(res.data.data))
+      dispatch(login(res.data.data))
       navigate("/shorten")
     } catch (err) {
       setApiError(err?.response?.data?.message || 'Registration failed')

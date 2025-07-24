@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, CircleUserRound } from 'lucide-react'
+
 import { logoutUser } from '../api/user.api'
 
-const Navbar = () => {
+const Navbar = ({onProfileClick}) => {
     const [darkMode, setDarkMode] = useState(false)
+    
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -43,37 +45,29 @@ const Navbar = () => {
     const handleLogout = () => {
         logoutUser()
         navigate("/")
-
-
     }
 
 
     return (
         <nav className="bg-white dark:bg-zinc-800 rounded-md shadow-md px-6 py-4 flex justify-between items-center w-full fixed left-0 top-0 z-50">
-            <Link to="/shoten" className="text-xl font-bold text-[#1eb9a4] dark:text-blue-500 ">
+            <Link to="/shorten" className="text-xl font-bold text-[#1eb9a4] dark:text-blue-500 ">
                 Url shorten
             </Link>
-
             <ul className="flex items-center space-x-6">
-                {['profile', 'logout'].map((item, index) => (
+                {['logout', 'profile'].map((item, index) => (
                     <li key={index}>
                         {item === 'logout' ? (
                             <button
                                 onClick={handleLogout}
-
                                 className="text-black dark:text-white capitalize hover:underline"
                             >
                                 {item}
                             </button>
+                            
                         ) : (
                             <NavLink
-                                to={`/${item}`}
-                                className={({ isActive }) =>
-                                    `capitalize hover:underline ${isActive ? 'text-blue-500' : 'text-black dark:text-white'
-                                    }`
-                                }
-                            >
-                                {item}
+                            className={`text-black dark:text-white`}>
+                                <CircleUserRound  onClick={onProfileClick} />  
                             </NavLink>
                         )}
                     </li>
