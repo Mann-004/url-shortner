@@ -22,7 +22,7 @@ export const authMiddleware = async (req, res, next) => {
     }
   } catch (error) {
     console.log("Access token expired or invalid:", error.message)
- 
+
   }
 
   if (!refreshToken) return errorResponse(res, "Unauthorized - no refresh token", 401)
@@ -37,7 +37,7 @@ export const authMiddleware = async (req, res, next) => {
     // console.log("newAccesTokenGen",newAccessToken)
     res.cookie("accessToken", newAccessToken, cookieOptionsForAccessToken)
 
-   
+
 
     req.user = sanitizeUser(user)
     return next()
