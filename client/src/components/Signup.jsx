@@ -110,7 +110,7 @@ const Signup = ({ onSwitch }) => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 pr-12 text-white placeholder-gray-400"
+                  className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 pr-12  placeholder-gray-400"
                   placeholder="Create a password"
                 />
                 <button
@@ -161,7 +161,7 @@ const InputField = ({ id, label, icon, value, onChange, placeholder, error, type
         name={id}
         value={value}
         onChange={onChange}
-        className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 text-white placeholder-gray-400 "
+        className="w-full dark:bg-zinc-700 border border-gray-600 rounded-lg px-10 py-3 placeholder-gray-400 "
         placeholder={placeholder}
       />
     </div>
